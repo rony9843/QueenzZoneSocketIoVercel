@@ -1,10 +1,17 @@
 const app = require("express")();
 const http = require("http").Server(app);
-const io = require("socket.io")(http, { cors: { origin: "*" } });
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true,
+  },
+});
 const port = process.env.PORT || 5500;
 
 app.get("/", (req, res) => {
-  res.send("this is queenzzone  server vercel ");
+  res.send("this is queenzzone socket io  server vercel ");
 });
 
 // const io = require("socket.io")(process.env.PORT || 8800, {
